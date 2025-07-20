@@ -1,0 +1,17 @@
+# Python environment
+.venv/
+venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Logs
+naukri_upload_log_*.log
+
+# IDE files
+.vscode/
+.idea/

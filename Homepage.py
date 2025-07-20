@@ -2,6 +2,7 @@ import time
 import os
 import glob
 import logging
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common import TimeoutException
 from selenium.webdriver.chrome.options import Options
@@ -28,19 +29,31 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-driver = webdriver.Chrome()
-driver.implicitly_wait(30)
+# Configure Chrome options for CI (headless mode)
 chrome_options = Options()
 chrome_options.add_argument("--disable-cookies")
+chrome_options.add_argument("--headless")  # Required for GitHub Actions
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+driver = webdriver.Chrome(options=chrome_options)
+driver.implicitly_wait(30)
 driver.get("https://www.naukri.com/")
 logging.info("Opened Naukri")
 driver.maximize_window()
 
+load_dotenv()  # loads variables from .env into environment
+
+EMAIL = os.getenv("NAUKRI_EMAIL")
+PASSWORD = os.getenv("NAUKRI_PASSWORD")
+RESUME_PATH = os.path.abspath("SachinG_Automationtester.pdf")
+
+
 driver.find_element(*NaukriLocators.LOGIN_BTN).click()
 logging.info("Clicked LogIn Button")
-driver.find_element(*NaukriLocators.EMAIL).send_keys("sachinghanteppagol17@gmail.com")
+driver.find_element(*NaukriLocators.EMAIL).send_keys(EMAIL)
 logging.info("Added Username")
-driver.find_element(*NaukriLocators.PASSWORD).send_keys("Allthebest@2025")
+driver.find_element(*NaukriLocators.PASSWORD).send_keys(PASSWORD)
 logging.info("Added Password")
 driver.find_element(*NaukriLocators.LOGIN_SUBMIT).click()
 logging.info("Clicked Submit")
@@ -51,7 +64,7 @@ logging.info("Clicked View Update Profile")
 
 upload_button = driver.find_element(*NaukriLocators.UPLOAD)
 driver.execute_script("arguments[0].style.display='block';", upload_button)
-upload_button.send_keys("C:\\Users\\Sachin\\PycharmProjects\\NaukriUpdate\\SachinG_Automationtester.pdf")
+upload_button.send_keys(RESUME_PATH)
 logging.info("clicked upload")
 
 try:
