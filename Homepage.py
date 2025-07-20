@@ -35,6 +35,13 @@ chrome_options.add_argument("--disable-cookies")
 chrome_options.add_argument("--headless")  # Required for GitHub Actions
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--window-size=1920,1080")  # 🛠️ KEY FIX
+chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument(
+    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/114.0.0.0 Safari/537.36"
+)
 
 driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(30)
@@ -49,7 +56,9 @@ PASSWORD = os.getenv("NAUKRI_PASSWORD")
 RESUME_PATH = os.path.abspath("SachinG_Automationtester.pdf")
 
 
-driver.find_element(*NaukriLocators.LOGIN_BTN).click()
+WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable(NaukriLocators.LOGIN_BTN)
+).click()
 logging.info("Clicked LogIn Button")
 driver.find_element(*NaukriLocators.EMAIL).send_keys(EMAIL)
 logging.info("Added Username")
