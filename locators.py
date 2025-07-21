@@ -9,3 +9,4 @@ class NaukriLocators:
     FILE_INPUT = (By.XPATH, "//input[@type='file']")
     SUCCESS_MESSAGE = (By.XPATH, "//p[contains(text(),'Resume has been successfully uploaded.')]")
     UPLOAD = (By.XPATH,"//input[@type='file']")
+    #
