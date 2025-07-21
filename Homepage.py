@@ -47,7 +47,7 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(30)
 driver.get("https://www.naukri.com/")
 logging.info("Opened Naukri")
-print(driver.page_source)  # optional: print HTML to logs
+ # optional: print HTML to logs
 driver.save_screenshot("debug.png")
 driver.maximize_window()
 
