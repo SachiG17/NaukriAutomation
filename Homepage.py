@@ -70,7 +70,7 @@ driver.find_element(*NaukriLocators.PASSWORD).send_keys(PASSWORD)
 logging.info("Added Password")
 driver.find_element(*NaukriLocators.LOGIN_SUBMIT).click()
 logging.info("Clicked Submit")
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[@class='nI-gNb-drawer__icon']")))
+WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, "//div[@class='nI-gNb-drawer__icon']"))).click()
 
 logging.info("Clicked Profile")
 driver.find_element(*NaukriLocators.VIEW_UPDATE).click()
