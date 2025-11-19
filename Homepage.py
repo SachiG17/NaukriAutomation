@@ -69,6 +69,10 @@ logging.info("Added Password")
 driver.find_element(*NaukriLocators.LOGIN_SUBMIT).click()
 logging.info("Clicked Submit")
 driver.find_element(*NaukriLocators.PROFILE_BTN).click()
+WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located(*NaukriLocators.PROFILE_BTN)
+)
+
 logging.info("Clicked Profile")
 driver.find_element(*NaukriLocators.VIEW_UPDATE).click()
 logging.info("Clicked View Update Profile")
