@@ -9,6 +9,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import NaukriLocators
+from selenium.webdriver.common.by import By
+
 
 # 🔄 Delete old log files
 for old_log in glob.glob("naukri_upload_log_*.log"):
