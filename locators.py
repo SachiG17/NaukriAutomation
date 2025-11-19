@@ -4,7 +4,7 @@ class NaukriLocators:
     EMAIL = (By.XPATH,"//input[@placeholder='Enter your active Email ID / Username']")
     PASSWORD = (By.XPATH,"//input[@placeholder='Enter your password']")
     LOGIN_SUBMIT = (By.XPATH,"//button[@type='submit']")
-    PROFILE_BTN = (By.XPATH,"//img[@alt='naukri user profile img']")
+    PROFILE_BTN = (By.XPATH,"//div[@class='nI-gNb-bar3']")
     VIEW_UPDATE = (By.LINK_TEXT, "View & Update Profile")
     FILE_INPUT = (By.XPATH, "//input[@type='file']")
     SUCCESS_MESSAGE = (By.XPATH, "//p[contains(text(),'Resume has been successfully uploaded.')]")
